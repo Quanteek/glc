@@ -53,16 +53,17 @@ int main(int argc, char** argv){
     v[3] = 5.7;
     //utilisation d'un predicat more_than_3
     more_than_u more_than = more_than_u(std::atof(argv[1]));
-    //    std::vector<double>::iterator it = std::find_if(v.begin(), v.end(), more_than_u(std::atof(argv[1])));
+    //std::vector<double>::iterator it = std::find_if(v.begin(), v.end(), more_than_u(std::atof(argv[1])));
     std::vector<double>::iterator it = std::find_if(v.begin(), v.end(), more_than);
 
 
     //Pourquoi boucle infinie de merde? Pourquoi la condition d'arrêt n'arrive jamais?
     std::cout << "for" << std::endl;
-    for (; it != v.end(); ++it)
+    for (it = v.begin(); it != v.end(); ++it)
         {
             it = std::find_if(it, v.end(), more_than);
-            std::cout << *(it) << "\n";
+            if (it == v.end()) {break;}
+            std::cout << "for :" << *(it) << "\n";
         }
 
     std::cout << "while" << std::endl;
@@ -70,6 +71,7 @@ int main(int argc, char** argv){
     while (it != v.end())
 	{
             it = std::find_if(it, v.end(), more_than);
+            if (it == v.end()) {break;}
             std::cout <<  *(it) << "\n";
             ++it;
 	}
