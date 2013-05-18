@@ -58,15 +58,19 @@ int main(int argc, char** argv){
 
 
     //Pourquoi boucle infinie de merde? Pourquoi la condition d'arrêt n'arrive jamais?
+    std::cout << "for" << std::endl;
     for (; it != v.end(); ++it)
-	{
+        {
             it = std::find_if(it, v.end(), more_than);
             std::cout << *(it) << "\n";
-	}
+        }
 
+    std::cout << "while" << std::endl;
+    it = v.begin();
     while (it != v.end())
 	{
+            it = std::find_if(it, v.end(), more_than);
             std::cout <<  *(it) << "\n";
-            it = std::find_if(++it, v.end(), more_than);
+            ++it;
 	}
 }
